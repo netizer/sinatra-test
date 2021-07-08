@@ -1,0 +1,16 @@
+set -e
+
+if [ -z "$PROJECT" ]
+then
+  echo "You need to provide PROJECT environment variable to run this script"
+  exit 1
+fi
+
+REPOSITORY="$(basename $PWD)"
+echo "Building and deploying gcr.io/$PROJECT/$REPOSITORY"
+
+gcloud config set project $PROJECT
+gcloud config set run/platform managed
+gcloud config set run/region europe-west1
+gcloud builds submit --tag "gcr.io/$PROJECT/$REPOSITORY"
+gcloud run deploy $REPOSITORY --allow-unauthenticated --concurrency 1 --memory 8192Mi --cpu 4 --image gcr.io/$PROJECT/$REPOSITORY
