@@ -16,6 +16,9 @@ get '/' do
       <li><a id=\"link1\" href=\"#\">Link 2</a></li>
       <li><a id=\"link2\" href=\"#\">Link 31</a></li>
       <li><a id=\"link3\" href=\"#\">Link 45</a></li>
+      <li><a id=\"link4\" href=\"#\">Link 61</a></li>
+      <li><a id=\"link5\" href=\"#\">Link 91</a></li>
+      <li><a id=\"link6\" href=\"#\">Link 121</a></li>
     <ul>
 
     <script>
@@ -45,6 +48,39 @@ get '/' do
       element3.onclick = (ev) => {
         ev.preventDefault()
         fetch(`/pages/45`)
+        .then((res) => {
+          res.json().then((jsonData) => {
+            console.log(jsonData)
+          })
+        })
+      }
+
+      const element4 = document.getElementById(\"link4\")
+      element4.onclick = (ev) => {
+        ev.preventDefault()
+        fetch(`/pages/61`)
+        .then((res) => {
+          res.json().then((jsonData) => {
+            console.log(jsonData)
+          })
+        })
+      }
+
+      const element5 = document.getElementById(\"link5\")
+      element5.onclick = (ev) => {
+        ev.preventDefault()
+        fetch(`/pages/91`)
+        .then((res) => {
+          res.json().then((jsonData) => {
+            console.log(jsonData)
+          })
+        })
+      }
+
+      const element6 = document.getElementById(\"link6\")
+      element6.onclick = (ev) => {
+        ev.preventDefault()
+        fetch(`/pages/121`)
         .then((res) => {
           res.json().then((jsonData) => {
             console.log(jsonData)
